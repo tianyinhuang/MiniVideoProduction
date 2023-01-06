@@ -109,7 +109,7 @@ def processPOSTRequest(appKey, token, text, audioSaveFile, format, sampleRate, e
     
 
 file = open("texttts.txt", "r", encoding="utf-8")
-appKey = 'HgYeZxSUOgAdHh8E'
+appKey = 'AppkeyXXXXXXXXXX'
 token = get_token()
 text = file.read()
 # 采用RFC 3986规范进行urlencode编码。
