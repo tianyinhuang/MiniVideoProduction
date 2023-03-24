@@ -1,8 +1,5 @@
--import http.client
+import http.client
 import urllib.parse
-import json
-import os
-import time
 import json
 from aliyunsdkcore.client import AcsClient
 from aliyunsdkcore.request import CommonRequest
@@ -16,7 +13,7 @@ def get_token():
       "servercode"
    );
 
-   # 创建request，并设置参数。
+   # Create request and set paremeters 创建request，并设置参数。
    request = CommonRequest()
    request.set_method('POST')
    request.set_domain('nls-meta.cn-shanghai.aliyuncs.com')
@@ -52,16 +49,8 @@ def processGETRequest(appKey, token, text, audioSaveFile, format, sampleRate) :
     url = url + '&text=' + text
     url = url + '&format=' + format
     url = url + '&sample_rate=' + str(sampleRate)
-    # voice 发音人，可选，默认是xiaoyun。
-    # url = url + '&voice=' + 'xiaoyun'
-    # volume 音量，范围是0~100，可选，默认50。
-    # url = url + '&volume=' + str(50)
-    # speech_rate 语速，范围是-500~500，可选，默认是0。
-    # url = url + '&speech_rate=' + str(0)
-    # pitch_rate 语调，范围是-500~500，可选，默认是0。
-    # url = url + '&pitch_rate=' + str(0)
     print(url)
-    # conn = httplib.HTTPSConnection(host)
+
     conn = http.client.HTTPSConnection(host)
     conn.request(method='GET', url=url)
     # Process return data 处理服务端返回的响应。
@@ -112,7 +101,7 @@ file = open("texttts.txt", "r", encoding="utf-8")
 appKey = 'AppkeyXXXXXXXXXX'
 token = get_token()
 text = file.read()
-# 采用RFC 3986规范进行urlencode编码。
+# Use the RFC 3986 specification for urlencode encoding. 采用RFC 3986规范进行urlencode编码。
 textUrlencode = text
 textUrlencode = urllib.parse.quote_plus(textUrlencode)
 textUrlencode = textUrlencode.replace("+", "%20")
